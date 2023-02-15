@@ -21684,7 +21684,7 @@ label,
 }
 
 .bg-gradient-info {
-  background-image: linear-gradient(310deg, #2152ff 0%, #21d4fd 100%);
+  background-image: linear-gradient(310deg, #42d3cb 0%, #21d4fd 100%);
 }
 
 .bg-gradient-warning {
@@ -22348,7 +22348,7 @@ html {
 }
 
 .navbar-light {
-  background-color: #fff !important;
+  background-color: #42d3cb !important;
 }
 
 .navbar-light .navbar-toggler {
@@ -24913,7 +24913,7 @@ p {
 }
 
 .text-gradient.text-info {
-  background-image: linear-gradient(310deg, #2152FF, #21D4FD);
+  background-image: linear-gradient(310deg, #13f0bd, #21D4FD);
 }
 
 .text-gradient.text-success {
