@@ -1,37 +1,44 @@
 <?php
-  /**
-  * Requires the "PHP Email Form" library
-  * The "PHP Email Form" library is available only in the pro version of the template
-  * The library should be uploaded to: vendor/php-email-form/php-email-form.php
-  * For more info and help: https://bootstrapmade.com/php-email-form/
-  */
-
-  // Replace contact@example.com with your real receiving email address
   $receiving_email_address = 'info@amazingpayment.fr';
+  
+        $message = [
+            'Messages' => [ [
+                'From' => [
+                  'Email' => $_POST['email'],
+                  'Name' => $_POST['name'],
+                ],
+                'To' => [
+                     [
+                    'Email' => $receiving_email_address,
+                    'Name' => "Contact form",
+                  ],
+                ],
+                'Subject' => $_POST['subject'].' '.time(),
+                'TextPart' => 'Greetings from Amazing payment',
+                'HTMLPart' =>$_POST['message'],
+               
+              ],
+            ],
+          ];
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://api.mailjet.com/v3.1/send');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Content-Type' => 'application/json',
+        ]);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($ch, CURLOPT_USERPWD, '6d30483b9e5a95c53cd1227125bfb39e:12b7bbe501daadf5f6e87bf7dd00f0a7');
+        curl_setopt($ch, CURLOPT_POSTFIELDS,json_encode($message));
 
-  if( file_exists($php_email_form = 'class.phpmailer.php' )) {
-    include( $php_email_form );
-  } else {
-    die( 'Unable to load the "PHP Email Form" Library!');
-  }
+        $response = curl_exec($ch);
 
-  $contact = new PHPMailer(true);
-  $contact->CharSet = 'UTF-8';
-  $contact->isSMTP();
-  $contact->Host       = 'smtp.example.com';                     //Set the SMTP server to send through
-  $contact->SMTPAuth   = true;                                   //Enable SMTP authentication
-  $contact->Username   = 'user@example.com';                     //SMTP username
-  $contact->Password   = 'secret';                               //SMTP password
-  $contact->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
-  $contact->Port       = 465; 
-  $contact->AddReplyTo($_POST['email'], $_POST['name']);
-  $contact->addAddress($receiving_email_address, 'Receiving Name');
-  $contact->Subject = $_POST['subject'];
-  $contact->Body = $_POST['message'];
-  $mail=$contact->send();
-  if($mail){
-    echo "ok";
-  }else{
-    echo "error";
-  }
+        curl_close($ch);
+        $response=json_decode($response,true);
+        if(isset($response['Messages'])){
+          echo "ok";
+        }else{
+          echo "error";
+        }
+  
 ?>
