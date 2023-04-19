@@ -417,7 +417,7 @@ Aujourd’hui nous permettons à nos clients d’accéder à une messagerie inst
 								<i class="bi bi-geo-alt"></i>
 								<h4>Location:</h4>
 								<p> <strong>Benin:</strong> Quartier Toklégbé lot N39 GF PK6 06 </p>
-								<p> <strong>Angleterre:</strong> 8 Bis Gabriel Voisin 51100 REIMS</p>
+								<p> <strong>France:</strong> 8 Bis Gabriel Voisin 51100 REIMS</p>
 								<p> <strong>Cameroun:</strong> Ville de soa,Yaoundé</p>
 							</div>
 
@@ -487,10 +487,10 @@ Aujourd’hui nous permettons à nos clients d’accéder à une messagerie inst
 						<div class="footer-info">
 							<h3>Amazing Payment</h3>
 							<p class="pb-3"><em>une application innovante
-								Qui offre a ses utilisateur une solution de paiement securisée et pratique</em></p>
+								qui offre a ses utilisateur une solution de paiement securisée et pratique</em></p>
 							<p>
 								8 Bis Gabriel Voisin <br>
-								51100 REIMS<br><br>
+								51100 REIMS<br>France<br>
 								<strong>Phone:</strong>  0177620382<br>
 								<strong>Email:</strong> contact@amazingpayment.io<br>
 							</p>
@@ -518,8 +518,13 @@ Aujourd’hui nous permettons à nos clients d’accéder à une messagerie inst
 					<div class="col-lg-4 col-md-6 footer-newsletter">
 						<h4>Notre Newsletter</h4>
 						<p> Rester au courant des nouvelle actuatité d'amazing payment </p>
-						<form action="" method="post">
-							<input type="email" name="email"><input type="submit" value="Subscribe">
+						<form action="forms/newsletter.php" method="post" class="php-email-form">
+							<div>
+								<input type="email" name="email"><input type="submit" value="Subscribe">
+							</div>
+								<span class="loading d-none">Loading</span>
+								<span class="error-message d-none"></span>
+								<span class="sent-message d-none">Inscription effectué avec success!</span>
 						</form>
 
 					</div>

@@ -1,8 +1,9 @@
 <?php
   $receiving_email_address = 'contact@amazingpayment.io';
-        $body='<strong>Nom:</strong>'.$_POST['name'].'<br />';
-        $body.='<strong>Email:</strong>'.$_POST['email'].'<br />';
-        $body.=$_POST['message'];
+        $body="Salut,\n\nNous vous remercions de vous être inscrit à notre newsletter. Vous recevrez bientôt des nouvelles et des offres spéciales de notre part.\n\nCordialement,\nL'équipe de Amazing payment";
+        $file = 'emails.txt';
+        $email = $_POST["email"];
+        file_put_contents($file, $email . PHP_EOL, FILE_APPEND);
         $message = [
             'Messages' => [ [
                 'From' => [
@@ -11,11 +12,11 @@
                 ],
                 'To' => [
                      [
-                    'Email' => $receiving_email_address,
-                    'Name' => "Contact form",
+                    'Email' => $_POST['email'],
+                    'Name' => "",
                   ],
                 ],
-                'Subject' => $_POST['subject'].' '.time(),
+                'Subject' => "Confirmation d'inscription a la newletter ".time(),
                 'TextPart' => 'Greetings from Amazing payment',
                 'HTMLPart' => $body,
                
@@ -43,4 +44,3 @@
           echo "error";
         }
   
-?>
